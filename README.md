@@ -34,7 +34,10 @@ A modern, high-performance digital signage dashboard designed specifically for t
 
    ```bash
    $host = 'localhost';
-   $db   = 'academic_centre';
+   $db   = 'your_db';
    $user = 'your_username';
    $pass = 'your_password';
    ```
+
+3. **Deploy:**
+Upload the folder to your web server (Apache/Nginx)
