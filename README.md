@@ -29,8 +29,10 @@ A modern, high-performance digital signage dashboard designed specifically for t
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/Dushan-456/FrontDesk-MRBS-Display.git
+   ```
 
    1. **Database Setup:**
 
    ```bash
    git clone https://github.com/Dushan-456/FrontDesk-MRBS-Display.git
+   ```
