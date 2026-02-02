@@ -204,7 +204,7 @@
                         <svg id="pauseIcon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
                     </button>
                     <audio id="bgMusic" loop>
-                        <source src="../background-music/background-music.mp3" type="audio/mpeg">
+                        <source src="../background-music/background-music-1.mp3" type="audio/mpeg">
                     </audio>
                 </div>
                 <div class="text-right">
