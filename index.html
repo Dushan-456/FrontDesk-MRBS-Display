@@ -1,78 +1,104 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Reception Display</title>
+    <link rel="icon" type="image/x-icon" href="./academic-center/images/logo without bg1.png" />
+
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        .glass-effect {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-        }
+      .glass-effect {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: all 0.3s ease;
+      }
 
-        .glass-button:hover .glass-effect {
-            background: rgba(255, 255, 255, 0.25);
-            transform: scale(1.02);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-        }
+      .glass-button:hover .glass-effect {
+        background: rgba(255, 255, 255, 0.25);
+        transform: scale(1.02);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      }
     </style>
-</head>
-<body class="bg-slate-900 text-white font-sans">
-
+  </head>
+  <body class="bg-slate-900 text-white font-sans">
     <div class="max-w-6xl mx-auto px-4 py-12">
-        <h1 class="text-4xl font-bold text-center mb-12">Select a Reception</h1>
+      <h1 class="text-4xl font-bold text-center mb-12">Select a Reception</h1>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <a href="./academic-center">
-            <button class="glass-button relative group h-[300px] w-full rounded-3xl overflow-hidden shadow-2xl">
-                <img src="./academic-center/images/bg.png" 
-                     alt="Technology" 
-                     class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                
-                <div class="absolute inset-0 flex items-center justify-center p-6">
-                    <div class="glass-effect w-full max-w-xs py-8 rounded-2xl text-center">
-                        <span class="block text-sm uppercase tracking-widest opacity-80 mb-1">PGIM</span>
-                        <h2 class="text-3xl font-bold">Academic Center</h2>
-                    </div>
-                </div>
-            </button>
-            </a>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <a href="./academic-center">
+          <button
+            class="glass-button relative group h-[300px] w-full rounded-3xl overflow-hidden shadow-2xl"
+          >
+            <img
+              src="./academic-center/images/bg.jpg"
+              alt="Technology"
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            />
 
-            <a href="./main-premises">            
-            <button class="glass-button relative group h-[300px] w-full rounded-3xl overflow-hidden shadow-2xl">
-                <img src="./main-premises/images/bg.jpg" 
-                     alt="Nature" 
-                     class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                
-                <div class="absolute inset-0 flex items-center justify-center p-6">
-                    <div class="glass-effect w-full max-w-xs py-8 rounded-2xl text-center">
-                        <span class="block text-sm uppercase tracking-widest opacity-80 mb-1">PGIM</span>
-                        <h2 class="text-3xl font-bold">Main Premises</h2>
-                    </div>
-                </div>
-            </button>
-            </a>
-            <a href="./board-rooms">            
-            <button class="glass-button relative group h-[300px] w-full rounded-3xl overflow-hidden shadow-2xl">
-                <img src="./board-rooms/images/bg.jpg" 
-                     alt="Nature" 
-                     class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                
-                <div class="absolute inset-0 flex items-center justify-center p-6">
-                    <div class="glass-effect w-full max-w-xs py-8 rounded-2xl text-center">
-                        <span class="block text-sm uppercase tracking-widest opacity-80 mb-1">PGIM Main Premises</span>
-                        <h2 class="text-3xl font-bold">Board Rooms</h2>
-                    </div>
-                </div>
-            </button>
-            </a>
+            <div class="absolute inset-0 flex items-center justify-center p-6">
+              <div
+                class="glass-effect w-full max-w-xs py-8 rounded-2xl text-center"
+              >
+                <span
+                  class="block text-sm uppercase tracking-widest opacity-80 mb-1"
+                  >PGIM</span
+                >
+                <h2 class="text-3xl font-bold">Academic Center</h2>
+              </div>
+            </div>
+          </button>
+        </a>
 
-        </div>
+        <a href="./main-premises">
+          <button
+            class="glass-button relative group h-[300px] w-full rounded-3xl overflow-hidden shadow-2xl"
+          >
+            <img
+              src="./main-premises/images/bg.jpg"
+              alt="Nature"
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            />
+
+            <div class="absolute inset-0 flex items-center justify-center p-6">
+              <div
+                class="glass-effect w-full max-w-xs py-8 rounded-2xl text-center"
+              >
+                <span
+                  class="block text-sm uppercase tracking-widest opacity-80 mb-1"
+                  >PGIM</span
+                >
+                <h2 class="text-3xl font-bold">Main Premises</h2>
+              </div>
+            </div>
+          </button>
+        </a>
+        <a href="./board-rooms">
+          <button
+            class="glass-button relative group h-[300px] w-full rounded-3xl overflow-hidden shadow-2xl"
+          >
+            <img
+              src="./board-rooms/images/bg.jpg"
+              alt="Nature"
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            />
+
+            <div class="absolute inset-0 flex items-center justify-center p-6">
+              <div
+                class="glass-effect w-full max-w-xs py-8 rounded-2xl text-center"
+              >
+                <span
+                  class="block text-sm uppercase tracking-widest opacity-80 mb-1"
+                  >PGIM Main Premises</span
+                >
+                <h2 class="text-3xl font-bold">Board Rooms</h2>
+              </div>
+            </div>
+          </button>
+        </a>
+      </div>
     </div>
-
-</body>
+  </body>
 </html>
