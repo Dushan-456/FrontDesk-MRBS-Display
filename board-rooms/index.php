@@ -132,6 +132,18 @@
 
 
         }
+                #digitalClock {
+            min-width: 220px;
+            justify-content: flex-end;
+            display: flex;
+            align-items: baseline;
+            font-variant-numeric: tabular-nums;
+        }
+        #musicBtn.playing {
+            color: #2563eb;
+            box-shadow: 0 0 15px rgba(37, 99, 235, 0.2);
+            border-color: #bfdbfe;
+        }   
     </style>
 </head>
 
@@ -181,10 +193,24 @@
                     </div>
                 </div>
             </div>
+            <div>
+                <h3 class="text-3xl font-extrabold tracking-tight text-slate-900">
+                    Welcome !
+                </h3>
+            </div>          
 
             <div class="flex items-center gap-10">
+                <div class="flex items-center gap-2 bg-slate-50 p-2 rounded-xl border border-slate-100">
+                    <button id="musicBtn" onclick="toggleMusic()" class="w-10 h-10 flex items-center justify-center bg-white rounded-lg shadow-sm hover:text-blue-600 transition-all text-slate-400">
+                        <svg id="playIcon" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        <svg id="pauseIcon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                    </button>
+                    <audio id="bgMusic" loop>
+                        <source src="../background-music/background-music.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
                 <div class="text-right">
-                    <div id="digitalClock" class="text-4xl font-bold text-red-500 tracking-tight  leading-none">00:00:00</div>
+                    <div id="digitalClock" class="text-4xl font-black tracking-tight text-slate-800 flex items-baseline justify-end">00:00</div>
                     <div id="paginationStatus" class="text-[10px] font-bold text-blue-600 uppercase tracking-widest mt-2">PAGE 1 OF 1</div>
                 </div>
             </div>
@@ -223,12 +249,53 @@
             else document.exitFullscreen();
         };
 
-        // Clock
-        setInterval(() => {
-            document.getElementById('digitalClock').innerText = new Date().toLocaleTimeString('en-GB', {
-                hour12: false
-            });
-        }, 1000);
+        // 12-Hour Digital Clock with Toggleable Seconds
+        function updateClock() {
+            const now = new Date();
+            
+            const showSeconds = true; 
+            
+            const options = { 
+                hour: '2-digit', 
+                minute: '2-digit', 
+                hour12: true 
+            };
+            
+            if (showSeconds) options.second = '2-digit';
+
+            const timeString = now.toLocaleTimeString('en-GB', options);
+
+            const [time, ampm] = timeString.split(' ');
+
+            document.getElementById('digitalClock').innerHTML = `
+                <span class="text-4xl font-black tabular-nums">${time}</span>
+                <span class="text-xl font-bold text-blue-600 ml-1 uppercase">${ampm}</span>
+            `;
+        }
+
+        // Update every second
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Background Music
+            const music = document.getElementById('bgMusic');
+            const playIcon = document.getElementById('playIcon');
+            const pauseIcon = document.getElementById('pauseIcon');
+
+            function toggleMusic() {
+                if (music.paused) {
+                    music.play().catch(error => {
+                        console.log("Browser blocked autoplay. User must click play manually.");
+                    });
+                    playIcon.classList.add('hidden');
+                    pauseIcon.classList.remove('hidden');
+                } else {
+                    music.pause();
+                    playIcon.classList.remove('hidden');
+                    pauseIcon.classList.add('hidden');
+                }
+            }
+
 
         async function loadData(date) {
             const list = document.getElementById('eventList');
