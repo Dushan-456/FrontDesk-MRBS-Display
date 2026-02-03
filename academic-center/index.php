@@ -217,7 +217,7 @@
 
         </div>
 
-        <section id="eventList" class="py-2  px-[250px] flex-1 grid gap-4 content-start overflow-hidden relative ">
+        <section id="eventList" class="py-2  px-[150px] flex-1 grid gap-4 content-start overflow-hidden relative ">
         </section>
 
         <div class="bg-white p-3 border-t border-slate-100">
@@ -431,7 +431,7 @@
                             </div>
                             
                             <div class="flex flex-col gap-2 ">
-                                <h3 class="text-3xl font-bold ${titleColor} tracking-tight truncate max-w-[800px]">
+                                <h3 class="text-5xl font-bold ${titleColor} tracking-tight truncate max-w-[800px]">
                                     ${e.event_name} 
                                     ${multiDayBadge}
                                 </h3>    
@@ -459,10 +459,10 @@
                                     <span class="text-2xl font-bold">
                                         ${externalTag} 
                                     </span>
-                                    <span class="text-2xl font-bold ${roomInfoColor}">
+                                    <span class="text-3xl font-bold ${roomInfoColor}">
                                     ${e.room_name} -
                                     </span>
-                                    <span class="text-xl font-black uppercase tracking-widest bg-[#a87f18] text-blue-100 border-black px-2 py-0.5 rounded border">
+                                    <span class="text-3xl font-black uppercase tracking-widest bg-[#a87f18] text-blue-100 border-black px-2 py-0.5 rounded border">
                                         ${e.floor_num}
                                     </span>
                                     <svg class="w-10 h-10 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
