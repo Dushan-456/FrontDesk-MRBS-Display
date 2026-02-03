@@ -412,7 +412,7 @@
                 const titleColor = isExternal ? 'text-blue-900 font-black' : 'text-white';
                 const roomInfoColor = isExternal ? 'text-blue-700' : 'text-white';
 
-                const timeBg = isExternal ? 'bg-blue-600 text-white border-blue-400' : 'glass-box border-slate-100 text-[#5af542]';
+                const timeBg = isExternal ? 'bg-blue-600 text-white border-blue-400' : 'bg-white border-slate-100 text-black';
                 const timeIconColor = isExternal ? 'text-blue-100' : 'text-[#1b850b]';
 
                 const externalTag = isExternal ?
