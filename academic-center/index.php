@@ -177,6 +177,21 @@
 
     <main class="flex-1 flex flex-col min-w-0">
 
+        <div class="bg-slate-900 text-white py-1 overflow-hidden border-b border-white/10 relative z-50">
+            <div class="flex items-center gap-4 px-10">
+                <span class="bg-red-600 text-[10px] font-black uppercase tracking-tighter px-2 py-0.5 rounded shrink-0">
+                    Special Notice
+                </span>
+                
+                <div class="flex-1 overflow-hidden relative h-6">
+                    <div id="tickerContent" class="absolute text-center w-full text-md font-bold tracking-wide text-slate-300 transition-all duration-500 transform translate-y-0">
+                        
+                    Welcome to PGIM Academic Centre - Please check your room number before heading to the floors.
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <header class="px-10 py-2 flex justify-between items-center bg-white border-b border-slate-200 z-20">
             <div class="flex items-center gap-6">
                 <button onclick="toggleSidebar()" class="p-3 bg-slate-50 border border-slate-200 rounded-xl hover:bg-slate-100 transition shadow-sm">
@@ -420,7 +435,7 @@
                     '';
 
                 list.innerHTML += `
-                    <div class="${cardBg} p-4 rounded-2xl event-card flex justify-between items-center animate-fade relative border transition-all duration-300" style="animation-delay: ${idx * 0.25}s">
+                    <div class="${cardBg} px-4 py-3 rounded-2xl event-card flex justify-between items-center animate-fade relative border transition-all duration-300" style="animation-delay: ${idx * 0.25}s">
                         <div class="flex items-center gap-6">
                             <div class="flex items-center gap-3">
                                 <div class="${arrowBg} p-1.5 rounded-lg shadow-sm">
@@ -431,7 +446,7 @@
                             </div>
                             
                             <div class="flex flex-col gap-2 ">
-                                <h3 class="text-5xl font-bold ${titleColor} tracking-tight truncate max-w-[800px]">
+                                <h3 class="text-[42px] font-bold ${titleColor} tracking-tight truncate max-w-[800px]">
                                     ${e.event_name} 
                                     ${multiDayBadge}
                                 </h3>    
@@ -477,6 +492,7 @@
         }
 
         function resetRotation() {
+            if (adActive) return;
             clearInterval(rotationInterval);
             const bar = document.getElementById('progressTimer');
             const step = () => {
@@ -517,7 +533,118 @@
             cal.render();
             loadData(new Date().toISOString().split('T')[0]);
         });
+
+
+        let adActive = false;
+        let currentAdIndex = 0; // Tracks which Notice to show next
+        const NOTICE_DURATION = 10; // Seconds to show the Notice
+        const NOTICE_INTERVAL = 60000; // 1 minute interval
+
+        // Array of your 4 separate Notice images
+        const NoticeImg = [
+            './images/notice1.png',
+            './images/notice2.png',
+            './images/notice1.png',
+            './images/notice2.png'
+        ];
+
+        function triggerSponsorAd() {
+            if (adActive) return;
+            
+            adActive = true;
+            const overlay = document.getElementById('sponsorOverlay');
+            const noticeImage = document.getElementById('adContent');
+            const timerElement = document.getElementById('adTimer');
+            
+            // Set the image source based on the current index
+            noticeImage.src = NoticeImg[currentAdIndex];
+            
+            // Move to the next ad for the next minute, reset to 0 if at the end
+            currentAdIndex = (currentAdIndex + 1) % NoticeImg.length;
+
+            let timeLeft = NOTICE_DURATION;
+            timerElement.innerText = timeLeft;
+
+            // Show overlay
+            overlay.classList.remove('hidden');
+            overlay.classList.add('flex');
+
+            const countdown = setInterval(() => {
+                timeLeft--;
+                timerElement.innerText = timeLeft;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(countdown);
+                    closeAd();
+                }
+            }, 1000);
+        }
+
+        function closeAd() {
+            const overlay = document.getElementById('sponsorOverlay');
+            overlay.classList.add('hidden');
+            overlay.classList.remove('flex');
+            adActive = false;
+            resetRotation(); 
+        }
+
+        // Start the 1-minute cycle
+        setInterval(triggerSponsorAd, NOTICE_INTERVAL);
+
+
+        const notices = [
+            "Welcome to PGIM Academic Centre - Please check your room number.",
+            "Wi-Fi : PGIM NET  |  Password : accesspgim",
+            "Cafeteria is Now Open on the 3rd Floor for All Participants.Place Your Lunch Orders before 10.00 AM",
+            "Please Maintain Silence Near the Examination Halls." ,
+            "Library Hours: Weekdays from 08:30 AM to 07:00 PM  | Saturdays 08:30 AM to 05:00 PM",
+            "IT Support : Visit the IT Service Center on the 3rd Floor from 12.00 PM to 02.00 PM.",
+            "Emergency Exit: Please follow the green illuminated signs in case of fire."
+        ];
+
+        let currentNoticeIndex = 0;
+
+        function rotateNotices() {
+            const ticker = document.getElementById('tickerContent');
+            
+            // 1. Slide the current text out (up)
+            ticker.style.opacity = "0";
+            ticker.style.transform = "translateY(-20px)";
+
+            setTimeout(() => {
+                // 2. Change the text
+                currentNoticeIndex = (currentNoticeIndex + 1) % notices.length;
+                ticker.innerText = notices[currentNoticeIndex];
+
+                // 3. Move the ticker back to the bottom without animation
+                ticker.style.transition = "none";
+                ticker.style.transform = "translateY(20px)";
+
+                // 4. Slide the new text in (up to center)
+                setTimeout(() => {
+                    ticker.style.transition = "all 0.5s ease-out";
+                    ticker.style.opacity = "1";
+                    ticker.style.transform = "translateY(0)";
+                }, 50);
+            }, 500);
+        }
+
+        // Rotate every 5 seconds
+        setInterval(rotateNotices, 5000);
     </script>
+
+        <div id="sponsorOverlay" class="fixed inset-0 z-[100] bg-black/10 backdrop-blur-md hidden flex-col items-center justify-center animate-fade">
+            <div class="absolute top-10 right-10">
+                Skip in <span id="adTimer" class="text-black font-mono text-3xl border-2 border-white/20 px-6 py-2 rounded-full tabular-nums">10</span>
+            </div>
+            <div class="w-full h-full flex items-center justify-center p-12">
+                <img id="adContent" src="" class="max-w-full max-h-[80vh] rounded-2xl shadow-2xl border-8 border-white/5 object-contain">
+            </div>
+            <div class="absolute bottom-10 flex flex-col items-center gap-2">
+             <p class="text-blue-400 tracking-[0.4em] uppercase text-[10px] font-black">Special Notice</p>
+        <div class="h-1 w-20 bg-blue-600 rounded-full"></div>
+    </div>
+</div>
 </body>
 
 </html>
