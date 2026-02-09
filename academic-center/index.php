@@ -143,6 +143,20 @@
             box-shadow: 0 0 15px rgba(37, 99, 235, 0.2);
             border-color: #bfdbfe;
         }   
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .animate-marquee {
+            display: inline-block;
+            animation: marquee 100s linear infinite; /* Adjust '30s' to change speed */
+        }
+
+        /* Pause scrolling when mouse hovers (optional, good for readability) */
+        .animate-marquee:hover {
+            animation-play-state: paused;
+        }
     </style>
 </head>
 
@@ -177,7 +191,7 @@
 
     <main class="flex-1 flex flex-col min-w-0">
 
-        <div class="bg-slate-900 text-white py-1 overflow-hidden border-b border-white/10 relative z-50">
+        <!-- <div class="bg-blue-900 text-white py-1 overflow-hidden border-b border-white/10 relative z-50">
             <div class="flex items-center gap-4 px-10">
              
                 
@@ -188,7 +202,17 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
+            <div class="bg-blue-900  text-white py-2 overflow-hidden border-b border-white/10 relative z-50 flex items-center">
+                <div class="bg-red-600 text-[20px] font-black uppercase tracking-tighter px-3 py-1 rounded-r-lg shrink-0 z-10 shadow-lg">
+                    Special Notice
+                </div>
+                
+                <div class="flex-1 overflow-hidden whitespace-nowrap relative">
+                    <div id="tickerContent" class="inline-block h-[35px] pl-[100%] animate-marquee text-3xl font-bold tracking-wide text-slate-300">
+                        </div>
+                </div>
+            </div>
 
         <header class="px-10 py-2 flex justify-between items-center bg-white border-b border-slate-200 z-20">
             <div class="flex items-center gap-6">
@@ -589,7 +613,7 @@
         // Start the 1-minute cycle
         setInterval(triggerSponsorAd, NOTICE_INTERVAL);
 
-
+/*
         const notices = [
             "Welcome to PGIM Academic Centre - Please check your room number before heading to the floors.",
             "Wi-Fi : PGIM NET  |  Password : accesspgim",
@@ -629,6 +653,25 @@
 
         // Rotate every 5 seconds
         setInterval(rotateNotices, 5000);
+
+*/
+        const notices = [
+       "Welcome to PGIM Academic Centre - Please check your room number before heading to the floors.",
+            "Wi-Fi : PGIM NET  |  Password : accesspgim",
+            "Cafeteria is Now Open on the 3rd Floor for All Participants.Place Your Lunch Orders before 10.00 AM",
+            "Please Maintain Silence Near the Examination Halls." ,
+            "Library Hours: Weekdays from 08:30 AM to 07:00 PM  | Saturdays 08:30 AM to 05:00 PM",
+            "IT Support : Visit the IT Service Center on the 3rd Floor from 12.00 PM to 02.00 PM.",
+            "Emergency Exit: Please follow the green illuminated signs in case of fire."
+        ];
+
+        // Join all notices with a separator
+        const longNoticeString = notices.join("     •     ");
+
+        // Inject into the ticker
+        document.getElementById('tickerContent').innerText = longNoticeString + "   •   " + longNoticeString; 
+        // (We double it to ensure there is no gap when the loop restarts)
+
     </script>
 
         <div id="sponsorOverlay" class="fixed inset-0 z-[100] bg-black/10 backdrop-blur-md hidden flex-col items-center justify-center animate-fade">
