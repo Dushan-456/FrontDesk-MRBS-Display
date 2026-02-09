@@ -150,12 +150,18 @@
 
         .animate-marquee {
             display: inline-block;
-            animation: marquee 100s linear infinite; /* Adjust '30s' to change speed */
+            animation: marquee 150s linear infinite; /*  change speed */
         }
 
-        /* Pause scrolling when mouse hovers (optional, good for readability) */
-        .animate-marquee:hover {
-            animation-play-state: paused;
+   
+        #tickerContent div {
+            display: inline-flex; 
+            vertical-align: middle;
+        }
+
+        #tickerContent {
+            display: inline-block;
+            white-space: nowrap; 
         }
     </style>
 </head>
@@ -457,7 +463,7 @@
                     '';
 
                 list.innerHTML += `
-                    <div class="${cardBg} px-4 py-3 rounded-2xl event-card flex justify-between items-center animate-fade relative border transition-all duration-300" style="animation-delay: ${idx * 0.25}s">
+                    <div class="${cardBg} px-4 py-2 rounded-2xl event-card flex justify-between items-center animate-fade relative border transition-all duration-300" style="animation-delay: ${idx * 0.25}s">
                         <div class="flex items-center gap-6">
                             <div class="flex items-center gap-3">
                                 <div class="${arrowBg} p-1.5 rounded-lg shadow-sm">
@@ -657,7 +663,7 @@
 */
         const notices = [
        "Welcome to PGIM Academic Centre - Please check your room number before heading to the floors.",
-            "Wi-Fi : PGIM NET  |  Password : accesspgim",
+            "Wi-Fi Access: Connect to 'PGIMNET' with Password : accesspgim",
             "Cafeteria is Now Open on the 3rd Floor for All Participants.Place Your Lunch Orders before 10.00 AM",
             "Please Maintain Silence Near the Examination Halls." ,
             "Library Hours: Weekdays from 08:30 AM to 07:00 PM  | Saturdays 08:30 AM to 05:00 PM",
@@ -665,12 +671,20 @@
             "Emergency Exit: Please follow the green illuminated signs in case of fire."
         ];
 
-        // Join all notices with a separator
-        const longNoticeString = notices.join("     •     ");
+        // r separator icon as a string
+        const separator = `
+            <div class="inline-block bg-blue-50 p-1 rounded-md ml-40 mr-5 shadow-sm align-middle">
+                <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="4">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+                </svg>
+            </div>
+        `;
 
-        // Inject into the ticker
-        document.getElementById('tickerContent').innerText = longNoticeString + "   •   " + longNoticeString; 
-        // (We double it to ensure there is no gap when the loop restarts)
+        // Join notices using the separator
+        const longNoticeString = notices.join(separator);
+
+        const ticker = document.getElementById('tickerContent');
+        ticker.innerHTML = longNoticeString + separator + longNoticeString;
 
     </script>
 
