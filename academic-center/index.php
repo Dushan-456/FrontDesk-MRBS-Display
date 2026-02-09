@@ -179,12 +179,10 @@
 
         <div class="bg-slate-900 text-white py-1 overflow-hidden border-b border-white/10 relative z-50">
             <div class="flex items-center gap-4 px-10">
-                <span class="bg-red-600 text-[10px] font-black uppercase tracking-tighter px-2 py-0.5 rounded shrink-0">
-                    Special Notice
-                </span>
+             
                 
-                <div class="flex-1 overflow-hidden relative h-6">
-                    <div id="tickerContent" class="absolute text-center w-full text-md font-bold tracking-wide text-slate-300 transition-all duration-500 transform translate-y-0">
+                <div class="flex-1 overflow-hidden relative h-[35px]">
+                    <div id="tickerContent" class="absolute text-center w-full text-3xl font-bold tracking-wide text-slate-300 transition-all duration-500 transform translate-y-0">
                         
                     Welcome to PGIM Academic Centre - Please check your room number before heading to the floors.
                     </div>
@@ -593,7 +591,7 @@
 
 
         const notices = [
-            "Welcome to PGIM Academic Centre - Please check your room number.",
+            "Welcome to PGIM Academic Centre - Please check your room number before heading to the floors.",
             "Wi-Fi : PGIM NET  |  Password : accesspgim",
             "Cafeteria is Now Open on the 3rd Floor for All Participants.Place Your Lunch Orders before 10.00 AM",
             "Please Maintain Silence Near the Examination Halls." ,
