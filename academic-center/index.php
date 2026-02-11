@@ -163,6 +163,39 @@
             display: inline-block;
             white-space: nowrap; 
         }
+.welcome-text {
+    background: linear-gradient(
+        to right, 
+        #1e293b 20%, 
+        #2563eb 40%, 
+        #60a5fa 60%, 
+        #1e293b 80%
+    );
+    background-size: 200% auto;
+    color: #000;
+    background-clip: text;
+    text-fill-color: transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 4s linear infinite, fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes shine {
+    to { background-position: 200% center; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+        
     </style>
 </head>
 
@@ -227,8 +260,8 @@
                 </div>
             </div>
             <div>
-                <h3 class="text-3xl font-extrabold tracking-tight text-slate-900">
-                    Welcome !
+                <h3 class="welcome-text text-5xl font-extrabold tracking-tighter">
+                    Welcome!
                 </h3>
             </div>
             <div class="flex items-center gap-10">
@@ -242,8 +275,8 @@
                     </audio>
                 </div>
                 <div class="text-right">
-                    <div id="digitalClock" class="text-4xl font-black tracking-tight text-slate-800 flex items-baseline justify-end">00:00</div>
-                    <div id="paginationStatus" class="text-[10px] font-bold text-blue-600 uppercase tracking-widest mt-2">PAGE 1 OF 1</div>
+                    <div id="digitalClock" class=" font-black tracking-tight text-slate-800 flex items-baseline justify-end">00:00</div>
+                    <div id="paginationStatus" class="text-[12px] font-bold text-blue-600 uppercase tracking-widest mt-2">PAGE 1 OF 1</div>
                 </div>
             </div>
         </header>
@@ -254,11 +287,11 @@
         <section id="eventList" class="py-2  px-[150px] flex-1 grid gap-4 content-start overflow-hidden relative ">
         </section>
 
-        <div class="bg-white p-3 border-t border-slate-100">
+        <div class="bg-white p-1 border-t border-slate-100">
             <div class="max-w-7xl mx-auto flex items-center gap-6">
                 <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest">NEXT PAGE </span>
                 <div class="flex-1 progress-container">
-                    <div id="progressTimer" class="h-full bg-blue-600 w-0"></div>
+                    <div id="progressTimer" class="h-full bg-red-600 w-0"></div>
                 </div>
             </div>
         </div>
@@ -310,8 +343,8 @@
             const [time, ampm] = timeString.split(' ');
 
             document.getElementById('digitalClock').innerHTML = `
-                <span class="text-4xl font-black tabular-nums">${time}</span>
-                <span class="text-xl font-bold text-blue-600 ml-1 uppercase">${ampm}</span>
+                <span class="text-5xl font-black tabular-nums">${time}</span>
+                <span class="text-2xl font-bold text-blue-600 ml-1 uppercase">${ampm}</span>
             `;
         }
 
