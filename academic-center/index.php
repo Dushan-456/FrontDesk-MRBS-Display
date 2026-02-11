@@ -287,9 +287,9 @@
         <section id="eventList" class="py-2  px-[150px] flex-1 grid gap-4 content-start overflow-hidden relative ">
         </section>
 
-        <div class="bg-white p-1 border-t border-slate-100">
+        <div class="bg-white  border-t border-slate-100">
             <div class="max-w-7xl mx-auto flex items-center gap-6">
-                <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest">NEXT PAGE </span>
+                <span class="text-[12px] font-black text-black uppercase tracking-widest">NEXT PAGE </span>
                 <div class="flex-1 progress-container">
                     <div id="progressTimer" class="h-full bg-red-600 w-0"></div>
                 </div>
