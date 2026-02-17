@@ -487,7 +487,7 @@
                 const arrowIconColor = isExternal ? 'text-white' : 'text-blue-600';
 
                 const titleColor = isExternal ? 'text-blue-900 font-black' : 'text-white';
-                const roomInfoColor = isExternal ? 'text-blue-700' : 'text-yellow-600';
+                const roomInfoColor = isExternal ? 'text-blue-700' : 'text-white';
 
                 const timeBg = isExternal ? 'bg-blue-600 text-white border-blue-400' : 'bg-white border-slate-100 text-black';
                 const timeIconColor = isExternal ? 'text-blue-100' : 'text-[#1b850b]';
