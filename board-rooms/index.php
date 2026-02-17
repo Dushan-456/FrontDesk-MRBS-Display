@@ -696,12 +696,12 @@
 
 */
         const notices = [
-       "Welcome to PGIM Academic Centre - Please check your room number before heading to the floors.",
+       "Welcome to Postgraduate Institute of Medicine - Please check your room number before heading to the floors.",
             "Wi-Fi Access: Connect to 'PGIMNET' with Password : accesspgim",
-            "Cafeteria is Now Open on the 3rd Floor for All Participants.Place Your Lunch Orders before 10.00 AM",
+            "Cafeteria is Now Open for All Participants.Place Your Lunch Orders before 10.00 AM",
             "Please Maintain Silence Near the Examination Halls." ,
-            "Library Hours: Weekdays from 08:30 AM to 07:00 PM  | Saturdays 08:30 AM to 05:00 PM",
-            "IT Support : Visit the IT Service Center on the 3rd Floor from 12.00 PM to 02.00 PM.",
+            "Library Hours: Weekdays from 08:00 AM to 04:15 PM  ",
+            "IT Support : Visit the IT Service Center on the 3rd Floor from 09.00 AM to 03.00 PM.",
             "Emergency Exit: Please follow the green illuminated signs in case of fire."
         ];
 
