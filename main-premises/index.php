@@ -129,10 +129,9 @@
             border-radius: 15px;
             border: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-
-
         }
-                #digitalClock {
+
+        #digitalClock {
             min-width: 220px;
             justify-content: flex-end;
             display: flex;
@@ -144,6 +143,59 @@
             box-shadow: 0 0 15px rgba(37, 99, 235, 0.2);
             border-color: #bfdbfe;
         }   
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .animate-marquee {
+            display: inline-block;
+            animation: marquee 150s linear infinite; /*  change speed */
+        }
+
+   
+        #tickerContent div {
+            display: inline-flex; 
+            vertical-align: middle;
+        }
+
+        #tickerContent {
+            display: inline-block;
+            white-space: nowrap; 
+        }
+.welcome-text {
+    background: linear-gradient(
+        to right, 
+        #1e293b 20%, 
+        #2563eb 40%, 
+        #60a5fa 60%, 
+        #1e293b 80%
+    );
+    background-size: 200% auto;
+    color: #000;
+    background-clip: text;
+    text-fill-color: transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 4s linear infinite, fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes shine {
+    to { background-position: 200% center; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+        
     </style>
 </head>
 
@@ -178,6 +230,20 @@
 
     <main class="flex-1 flex flex-col min-w-0">
 
+        <!-- <div class="bg-blue-900 text-white py-1 overflow-hidden border-b border-white/10 relative z-50">
+            <div class="flex items-center gap-4 px-10">
+             
+                
+                <div class="flex-1 overflow-hidden relative h-[35px]">
+                    <div id="tickerContent" class="absolute text-center w-full text-3xl font-bold tracking-wide text-slate-300 transition-all duration-500 transform translate-y-0">
+                        
+                    Welcome to PGIM Academic Centre - Please check your room number before heading to the floors.
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+
         <header class="px-10 py-2 flex justify-between items-center bg-white border-b border-slate-200 z-20">
             <div class="flex items-center gap-6">
                 <button onclick="toggleSidebar()" class="p-3 bg-slate-50 border border-slate-200 rounded-xl hover:bg-slate-100 transition shadow-sm">
@@ -194,11 +260,10 @@
                 </div>
             </div>
             <div>
-                <h3 class="text-3xl font-extrabold tracking-tight text-slate-900">
-                    Welcome !
+                <h3 class="welcome-text text-5xl font-extrabold tracking-tighter">
+                    Welcome!
                 </h3>
             </div>
-
             <div class="flex items-center gap-10">
                 <div class="flex items-center gap-2 bg-slate-50 p-2 rounded-xl border border-slate-100">
                     <button id="musicBtn" onclick="toggleMusic()" class="w-10 h-10 flex items-center justify-center bg-white rounded-lg shadow-sm hover:text-blue-600 transition-all text-slate-400">
@@ -210,8 +275,8 @@
                     </audio>
                 </div>
                 <div class="text-right">
-                    <div id="digitalClock" class="text-4xl font-black tracking-tight text-slate-800 flex items-baseline justify-end">00:00</div>
-                    <div id="paginationStatus" class="text-[10px] font-bold text-blue-600 uppercase tracking-widest mt-2">PAGE 1 OF 1</div>
+                    <div id="digitalClock" class=" font-black tracking-tight text-slate-800 flex items-baseline justify-end">00:00</div>
+                    <div id="paginationStatus" class="text-[12px] font-bold text-blue-600 uppercase tracking-widest mt-2">PAGE 1 OF 1</div>
                 </div>
             </div>
         </header>
@@ -219,17 +284,27 @@
 
         </div>
 
-        <section id="eventList" class="py-2  px-[250px] flex-1 grid gap-4 content-start overflow-hidden relative ">
+        <section id="eventList" class="py-2  px-[150px] flex-1 grid gap-4 content-start overflow-hidden relative ">
         </section>
 
-        <div class="bg-white p-3 border-t border-slate-100">
+        <div class="bg-white  border-t border-slate-100">
             <div class="max-w-7xl mx-auto flex items-center gap-6">
-                <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest">NEXT PAGE </span>
+                <span class="text-[12px] font-black text-black uppercase tracking-widest">NEXT PAGE </span>
                 <div class="flex-1 progress-container">
-                    <div id="progressTimer" class="h-full bg-blue-600 w-0"></div>
+                    <div id="progressTimer" class="h-full bg-red-600 w-0"></div>
                 </div>
             </div>
         </div>
+            <div class="bg-blue-900  text-white py-2 overflow-hidden border-b border-white/10 relative z-50 flex items-center">
+                <div class="bg-red-600 text-[20px] font-black uppercase tracking-tighter px-3 py-1 rounded-r-lg shrink-0 z-10 shadow-lg">
+                    Special Notice
+                </div>
+                
+                <div class="flex-1 overflow-hidden whitespace-nowrap relative">
+                    <div id="tickerContent" class="inline-block h-[35px] pl-[100%] animate-marquee text-3xl font-bold tracking-wide text-slate-300">
+                        </div>
+                </div>
+            </div>
 
     </main>
 
@@ -268,8 +343,8 @@
             const [time, ampm] = timeString.split(' ');
 
             document.getElementById('digitalClock').innerHTML = `
-                <span class="text-4xl font-black tabular-nums">${time}</span>
-                <span class="text-xl font-bold text-blue-600 ml-1 uppercase">${ampm}</span>
+                <span class="text-5xl font-black tabular-nums">${time}</span>
+                <span class="text-2xl font-bold text-blue-600 ml-1 uppercase">${ampm}</span>
             `;
         }
 
@@ -296,7 +371,6 @@
                     pauseIcon.classList.add('hidden');
                 }
             }
-
 
         async function loadData(date) {
             const list = document.getElementById('eventList');
@@ -397,50 +471,50 @@
             </div>
         `;
 
-
             pageData.forEach((e, idx) => {
                 const isExternal = e.event_type === 'E';
-
-              
                 const nowTs = Math.floor(Date.now() / 1000);
-                
-          
                 const isMultiDay = (parseInt(e.raw_end) - parseInt(e.raw_start)) > 86400; 
+                const isOngoing = (nowTs >= parseInt(e.raw_start) && nowTs <= parseInt(e.raw_end));
 
-           
                 const multiDayBadge = isMultiDay ? 
                     `<span class="ml-2 text-[10px] font-black uppercase tracking-widest bg-amber-500 text-white px-2 py-1 rounded shadow-lg animate-pulse">Multi-Day</span>` : '';
-  
-                const cardBg = isExternal ? 'bg-blue-50 border-blue-200 shadow-blue-200' : 'glass-box shadow-lg';
-                
-                const titleColor = isExternal ? 'text-blue-900' : 'text-white';
-                const roomTextColor = isExternal ? 'text-blue-700' : 'text-white';
 
-                const iconColor = isExternal ? 'text-blue-200' : 'text-slate-400';
-                const timeBg = isExternal ? 'bg-blue-600 border-blue-400/30 text-white' : 'glass-box border-slate-100 text-[#5af542]';
+                
+                const cardBg = isExternal ? 'bg-blue-50 border-blue-200 shadow-blue-200/50' : 'glass-box shadow-lg';
+                
+                const arrowBg = isExternal ? 'bg-blue-600' : 'bg-blue-50';
+                const arrowIconColor = isExternal ? 'text-white' : 'text-blue-600';
+
+                const titleColor = isExternal ? 'text-blue-900 font-black' : 'text-white';
+                const roomInfoColor = isExternal ? 'text-blue-700' : 'text-white';
+
+                const timeBg = isExternal ? 'bg-blue-600 text-white border-blue-400' : 'bg-white border-slate-100 text-black';
+                const timeIconColor = isExternal ? 'text-blue-100' : 'text-[#1b850b]';
 
                 const externalTag = isExternal ?
                     `<span class="ml-2 text-[9px] font-black uppercase tracking-widest bg-blue-700 text-white px-2 py-0.5 rounded shadow-sm">External</span>` :
                     '';
 
                 list.innerHTML += `
-                    <div class="${cardBg} p-4 rounded-2xl event-card flex justify-between items-center animate-fade relative border transition-all duration-300" style="animation-delay: ${idx * 0.25}s">
+                    <div class="${cardBg} px-4 py-2 rounded-2xl event-card flex justify-between items-center animate-fade relative border transition-all duration-300" style="animation-delay: ${idx * 0.25}s">
                         <div class="flex items-center gap-6">
                             <div class="flex items-center gap-3">
-                                <div class="${isExternal ? 'bg-blue-600' : 'bg-blue-50'} p-1.5 rounded-lg">
-                                    <svg class="w-6 h-6 ${isExternal ? 'text-white' : 'text-blue-600'}" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="4">
+                                <div class="${arrowBg} p-1.5 rounded-lg shadow-sm">
+                                    <svg class="w-6 h-6 ${arrowIconColor}" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="4">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
                                     </svg>
                                 </div>
                             </div>
                             
                             <div class="flex flex-col gap-2 ">
-                                <h3 class="text-3xl font-bold ${titleColor} tracking-tight truncate max-w-[800px]">
-                                    ${e.event_name} ${multiDayBadge}
+                                <h3 class="text-[42px] font-bold ${titleColor} tracking-tight truncate max-w-[800px]">
+                                    ${e.event_name} 
+                                    ${multiDayBadge}
                                 </h3>    
                                 <div class="text-right">
                                     <span class="flex w-[350px] gap-5 items-center font-['Orbitron'] text-xl font-bold ${timeBg} px-4 py-1 rounded-xl border">
-                                        <svg class="w-6 h-6 ${isExternal ? 'text-blue-200' : 'text-[#1b850b]'}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <svg class="w-6 h-6 ${timeIconColor}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                         </svg>
                                         ${e.start_time} - ${e.end_time}
@@ -458,13 +532,15 @@
                             </button>
 
                             <div class="flex flex-col items-end ">
-                                <div class="flex gap-2">
+                                <div class="flex gap-2 items-center">
                                     <span class="text-2xl font-bold">
                                         ${externalTag} 
                                     </span>
-                              
-                                    <span class="text-xl font-black uppercase tracking-widest bg-[#a87f18] text-blue-100 border-black px-2 py-0.5 rounded border">
-                                        ${e.room_name}
+                                    <span class="text-3xl font-bold ${roomInfoColor}">
+                                    ${e.room_name} -
+                                    </span>
+                                    <span class="text-3xl font-black uppercase tracking-widest bg-[#a87f18] text-blue-100 border-black px-2 py-0.5 rounded border">
+                                        ${e.floor_num}
                                     </span>
                                     <svg class="w-10 h-10 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -478,6 +554,7 @@
         }
 
         function resetRotation() {
+            if (adActive) return;
             clearInterval(rotationInterval);
             const bar = document.getElementById('progressTimer');
             const step = () => {
@@ -518,7 +595,145 @@
             cal.render();
             loadData(new Date().toISOString().split('T')[0]);
         });
+
+
+        let adActive = false;
+        let currentAdIndex = 0; // Tracks which Notice to show next
+        const NOTICE_DURATION = 10; // Seconds to show the Notice
+        const NOTICE_INTERVAL = 60000; // 1 minute interval
+
+        // Array of your 4 separate Notice images
+        const NoticeImg = [
+            './images/notice1.png',
+            './images/notice2.png',
+            './images/notice1.png',
+            './images/notice2.png'
+        ];
+
+        function triggerSponsorAd() {
+            if (adActive) return;
+            
+            adActive = true;
+            const overlay = document.getElementById('sponsorOverlay');
+            const noticeImage = document.getElementById('adContent');
+            const timerElement = document.getElementById('adTimer');
+            
+            // Set the image source based on the current index
+            noticeImage.src = NoticeImg[currentAdIndex];
+            
+            // Move to the next ad for the next minute, reset to 0 if at the end
+            currentAdIndex = (currentAdIndex + 1) % NoticeImg.length;
+
+            let timeLeft = NOTICE_DURATION;
+            timerElement.innerText = timeLeft;
+
+            // Show overlay
+            overlay.classList.remove('hidden');
+            overlay.classList.add('flex');
+
+            const countdown = setInterval(() => {
+                timeLeft--;
+                timerElement.innerText = timeLeft;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(countdown);
+                    closeAd();
+                }
+            }, 1000);
+        }
+
+        function closeAd() {
+            const overlay = document.getElementById('sponsorOverlay');
+            overlay.classList.add('hidden');
+            overlay.classList.remove('flex');
+            adActive = false;
+            resetRotation(); 
+        }
+
+        // Start the 1-minute cycle
+        setInterval(triggerSponsorAd, NOTICE_INTERVAL);
+
+/*
+        const notices = [
+            "Welcome to PGIM Academic Centre - Please check your room number before heading to the floors.",
+            "Wi-Fi : PGIM NET  |  Password : accesspgim",
+            "Cafeteria is Now Open on the 3rd Floor for All Participants.Place Your Lunch Orders before 10.00 AM",
+            "Please Maintain Silence Near the Examination Halls." ,
+            "Library Hours: Weekdays from 08:30 AM to 07:00 PM  | Saturdays 08:30 AM to 05:00 PM",
+            "IT Support : Visit the IT Service Center on the 3rd Floor from 12.00 PM to 02.00 PM.",
+            "Emergency Exit: Please follow the green illuminated signs in case of fire."
+        ];
+
+        let currentNoticeIndex = 0;
+
+        function rotateNotices() {
+            const ticker = document.getElementById('tickerContent');
+            
+            // 1. Slide the current text out (up)
+            ticker.style.opacity = "0";
+            ticker.style.transform = "translateY(-20px)";
+
+            setTimeout(() => {
+                // 2. Change the text
+                currentNoticeIndex = (currentNoticeIndex + 1) % notices.length;
+                ticker.innerText = notices[currentNoticeIndex];
+
+                // 3. Move the ticker back to the bottom without animation
+                ticker.style.transition = "none";
+                ticker.style.transform = "translateY(20px)";
+
+                // 4. Slide the new text in (up to center)
+                setTimeout(() => {
+                    ticker.style.transition = "all 0.5s ease-out";
+                    ticker.style.opacity = "1";
+                    ticker.style.transform = "translateY(0)";
+                }, 50);
+            }, 500);
+        }
+
+        // Rotate every 5 seconds
+        setInterval(rotateNotices, 5000);
+
+*/
+        const notices = [
+       "Welcome to PGIM Academic Centre - Please check your room number before heading to the floors.",
+            "Wi-Fi Access: Connect to 'PGIMNET' with Password : accesspgim",
+            "Cafeteria is Now Open on the 3rd Floor for All Participants.Place Your Lunch Orders before 10.00 AM",
+            "Please Maintain Silence Near the Examination Halls." ,
+            "Library Hours: Weekdays from 08:30 AM to 07:00 PM  | Saturdays 08:30 AM to 05:00 PM",
+            "IT Support : Visit the IT Service Center on the 3rd Floor from 12.00 PM to 02.00 PM.",
+            "Emergency Exit: Please follow the green illuminated signs in case of fire."
+        ];
+
+        // r separator icon as a string
+        const separator = `
+            <div class="inline-block bg-blue-50 p-1 rounded-md ml-40 mr-5 shadow-sm align-middle">
+                <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="4">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+                </svg>
+            </div>
+        `;
+
+        // Join notices using the separator
+        const longNoticeString = notices.join(separator);
+
+        const ticker = document.getElementById('tickerContent');
+        ticker.innerHTML = longNoticeString + separator + longNoticeString;
+
     </script>
+
+        <div id="sponsorOverlay" class="fixed inset-0 z-[100] bg-black/10 backdrop-blur-md hidden flex-col items-center justify-center animate-fade">
+            <div class="absolute top-10 right-10">
+                Skip in <span id="adTimer" class="text-black font-mono text-3xl border-2 border-white/20 px-6 py-2 rounded-full tabular-nums">10</span>
+            </div>
+            <div class="w-full h-full flex items-center justify-center p-12">
+                <img id="adContent" src="" class="max-w-full max-h-[80vh] rounded-2xl shadow-2xl border-8 border-white/5 object-contain">
+            </div>
+            <div class="absolute bottom-10 flex flex-col items-center gap-2">
+             <p class="text-blue-400 tracking-[0.4em] uppercase text-[10px] font-black">Special Notice</p>
+        <div class="h-1 w-20 bg-blue-600 rounded-full"></div>
+    </div>
+</div>
 </body>
 
 </html>
