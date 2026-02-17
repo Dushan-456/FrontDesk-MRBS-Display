@@ -536,11 +536,9 @@
                                     <span class="text-2xl font-bold">
                                         ${externalTag} 
                                     </span>
-                                    <span class="text-3xl font-bold ${roomInfoColor}">
-                                    ${e.room_name} -
-                                    </span>
+                                
                                     <span class="text-3xl font-black uppercase tracking-widest bg-[#a87f18] text-blue-100 border-black px-2 py-0.5 rounded border">
-                                        ${e.floor_num}
+                                        ${e.room_name}
                                     </span>
                                     <svg class="w-10 h-10 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
