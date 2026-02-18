@@ -41,3 +41,5 @@ A modern, high-performance digital signage dashboard designed specifically for t
 
 3. **Deploy:**
 Upload the folder to your web server (Apache/Nginx)
+
+...
